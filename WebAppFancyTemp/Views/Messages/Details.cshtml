@@ -1,0 +1,51 @@
+﻿@model WebAppFancyTemp.Models.Message
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Message</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.message_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.message_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.message_email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.message_email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.message_website_url)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.message_website_url)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.message_content)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.message_content)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.message_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

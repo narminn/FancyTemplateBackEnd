@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FancyTempDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Blog">
+    <Key>
+      <PropertyRef Name="blog_id" />
+    </Key>
+    <Property Name="blog_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="blog_title" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="blog_content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="blog_img" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="blog_category_id" Type="Int32" />
+    <NavigationProperty Name="Category" Relationship="Self.FK_Blog_Categories" FromRole="Blog" ToRole="Categories" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="category_id" />
+    </Key>
+    <Property Name="category_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="category_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Blogs" Relationship="Self.FK_Blog_Categories" FromRole="Categories" ToRole="Blog" />
+  </EntityType>
+  <EntityType Name="Contact">
+    <Key>
+      <PropertyRef Name="contact_id" />
+    </Key>
+    <Property Name="contact_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="contact_phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="contact_email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="contact_address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="contact_work_time" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Feature_Boxes">
+    <Key>
+      <PropertyRef Name="feature_boxes_id" />
+    </Key>
+    <Property Name="feature_boxes_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="feature_boxes_title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="feature_boxes_icon" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="feature_boxes_content" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="feature_boxes_url" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Industry">
+    <Key>
+      <PropertyRef Name="industries_id" />
+    </Key>
+    <Property Name="industries_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="industries_title" Type="String" MaxLength="120" FixedLength="false" Unicode="true" />
+    <Property Name="industries_content" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+    <Property Name="industries_img" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="industries_url" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Message">
+    <Key>
+      <PropertyRef Name="message_id" />
+    </Key>
+    <Property Name="message_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="message_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="message_email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="message_website_url" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+    <Property Name="message_content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Service_Area">
+    <Key>
+      <PropertyRef Name="service_id" />
+    </Key>
+    <Property Name="service_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="service_img" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="service_title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="service_content" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="service_content_url" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Service_Area_Contents">
+    <Key>
+      <PropertyRef Name="service_contents_id" />
+    </Key>
+    <Property Name="service_contents_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="service_contents_title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="service_contents_content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="service_contents_icon" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Slider">
+    <Key>
+      <PropertyRef Name="slider_id" />
+    </Key>
+    <Property Name="slider_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="slider_title" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+    <Property Name="slider_img" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="slider_first_url" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+    <Property Name="slider_second_url" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Testimonials_Slider">
+    <Key>
+      <PropertyRef Name="testimonials_slider_id" />
+    </Key>
+    <Property Name="testimonials_slider_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="testimonials_slider_icon" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="testimonials_slider_content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="testimonials_slider_author" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="testimonials_slider_position" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="testimonials_slider_img" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="FK_Blog_Categories">
+    <End Role="Categories" Type="Self.Category" Multiplicity="0..1" />
+    <End Role="Blog" Type="Self.Blog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categories">
+        <PropertyRef Name="category_id" />
+      </Principal>
+      <Dependent Role="Blog">
+        <PropertyRef Name="blog_category_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="FancyTempDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Blogs" EntityType="Self.Blog" />
+    <EntitySet Name="Categories" EntityType="Self.Category" />
+    <EntitySet Name="Contacts" EntityType="Self.Contact" />
+    <EntitySet Name="Feature_Boxes" EntityType="Self.Feature_Boxes" />
+    <EntitySet Name="Industries" EntityType="Self.Industry" />
+    <EntitySet Name="Messages" EntityType="Self.Message" />
+    <EntitySet Name="Service_Area" EntityType="Self.Service_Area" />
+    <EntitySet Name="Service_Area_Contents" EntityType="Self.Service_Area_Contents" />
+    <EntitySet Name="Sliders" EntityType="Self.Slider" />
+    <EntitySet Name="Testimonials_Slider" EntityType="Self.Testimonials_Slider" />
+    <AssociationSet Name="FK_Blog_Categories" Association="Self.FK_Blog_Categories">
+      <End Role="Categories" EntitySet="Categories" />
+      <End Role="Blog" EntitySet="Blogs" />
+    </AssociationSet>
+    <EntitySet Name="Menus" EntityType="FancyTempDBModel.Menu" />
+  </EntityContainer>
+  <EntityType Name="Menu">
+    <Key>
+      <PropertyRef Name="menu_id" />
+    </Key>
+    <Property Name="menu_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="menu_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="menu_url" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+</Schema>
