@@ -17,28 +17,49 @@ namespace WebAppFancyTemp.Controllers
         // GET: Categories
         public ActionResult Index()
         {
-            return View(db.Categories.ToList());
+            if (Check.Check_Login())
+            {
+                return View(db.Categories.ToList());
+            }
+            else
+            {
+                return RedirectToAction("Login", "Admin");
+            }
         }
 
         // GET: Categories/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
+            if (Check.Check_Login())
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Category category = db.Categories.Find(id);
+                if (category == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(category);
             }
-            Category category = db.Categories.Find(id);
-            if (category == null)
+            else
             {
-                return HttpNotFound();
+                return RedirectToAction("Login", "Admin");
             }
-            return View(category);
         }
 
         // GET: Categories/Create
         public ActionResult Create()
         {
-            return View();
+            if (Check.Check_Login())
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login", "Admin");
+            }
         }
 
         // POST: Categories/Create
@@ -48,29 +69,43 @@ namespace WebAppFancyTemp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "category_id,category_name")] Category category)
         {
-            if (ModelState.IsValid)
+            if (Check.Check_Login())
             {
-                db.Categories.Add(category);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+                if (ModelState.IsValid)
+                {
+                    db.Categories.Add(category);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
 
-            return View(category);
+                return View(category);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Admin");
+            }
         }
 
         // GET: Categories/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
+            if (Check.Check_Login())
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Category category = db.Categories.Find(id);
+                if (category == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(category);
             }
-            Category category = db.Categories.Find(id);
-            if (category == null)
+            else
             {
-                return HttpNotFound();
+                return RedirectToAction("Login", "Admin");
             }
-            return View(category);
         }
 
         // POST: Categories/Edit/5
@@ -80,28 +115,42 @@ namespace WebAppFancyTemp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "category_id,category_name")] Category category)
         {
-            if (ModelState.IsValid)
+            if (Check.Check_Login())
             {
-                db.Entry(category).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    db.Entry(category).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                return View(category);
             }
-            return View(category);
+            else
+            {
+                return RedirectToAction("Login", "Admin");
+            }
         }
 
         // GET: Categories/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
+            if (Check.Check_Login())
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Category category = db.Categories.Find(id);
+                if (category == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(category);
             }
-            Category category = db.Categories.Find(id);
-            if (category == null)
+            else
             {
-                return HttpNotFound();
+                return RedirectToAction("Login", "Admin");
             }
-            return View(category);
         }
 
         // POST: Categories/Delete/5
@@ -109,10 +158,17 @@ namespace WebAppFancyTemp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Category category = db.Categories.Find(id);
-            db.Categories.Remove(category);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            if (Check.Check_Login())
+            {
+                Category category = db.Categories.Find(id);
+                db.Categories.Remove(category);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return RedirectToAction("Login", "Admin");
+            }
         }
 
         protected override void Dispose(bool disposing)

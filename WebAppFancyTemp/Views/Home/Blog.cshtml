@@ -1,0 +1,100 @@
+﻿@model WebAppFancyTemp.ViewModel.BlogPartial
+@{
+    ViewBag.Title = "Blog";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section class="banner_area">
+    @foreach (var item in Model.blog_model._blog_page)
+    {
+
+
+        <div class="container">
+            <div class="banner_text_inner">
+                <h4>@item.blog_title</h4>
+                <ul>
+                    <li><a href="index.html"><i class="fa fa-home" aria-hidden="true"></i>Home</a></li>
+                    <li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i>Archive</a></li>
+                    <li><a href="static.html"><i class="fa fa-angle-right" aria-hidden="true"></i>Static Page</a></li>
+                </ul>
+            </div>
+        </div>
+    }
+</section>
+<!--================End Banner Area =================-->
+<!--================Static Area =================-->
+<section class="static_area">
+    <div class="container">
+        <div class="static_inner">
+            <div class="row">
+                <div class="col-lg-9">
+                                          
+                    <div class="static_main_content">
+                        @foreach (var item in Model.blog_model._blog_page)
+    {
+
+
+                    <div class="static_social">
+                        <ul>
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                            <li><a href="#"><i class="fa fa-thumb-tack" aria-hidden="true"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="static_img">
+                        <img class="img-fluid" src="~/Uploads/@item.blog_img" alt="" style="width:880px;height:450px">
+                    </div>
+                    <div class="static_text">
+                        <p>@item.blog_content</p>
+                        
+                    </div>
+                    
+                   
+                   
+}
+                    </div>
+                        
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="right_sidebar_area">
+                            <aside class="right_widget r_news_widget">
+                                <div class="r_w_title">
+                                    <h3>Recent News</h3>
+                                </div>
+                                <div class="news_inner">
+                                    @foreach (var item in Model.blog_model._blog)
+                                        {
+                                <div class="news_item">
+                                    <a href="#"><h4>@item.blog_title</h4></a>
+                                    <a href="#"><h6>@item.blog_content.Substring(0,100)</h6></a>
+                                </div>
+                                        }
+
+
+
+
+                                </div>
+                            </aside>
+                            <aside class="right_widget r_cat_widget">
+                                <div class="r_w_title">
+                                    <h3>Categories</h3>
+                                </div>
+                                <ul>
+                                    @foreach (var item in Model.partial._category)
+                                         {
+                                <li><a href="#">@item.category_name</a></li>
+                                           }
+
+
+                                </ul>
+                            </aside>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+

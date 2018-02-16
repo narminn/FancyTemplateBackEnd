@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
+using WebAppFancyTemp.Models;
 namespace WebAppFancyTemp.Controllers
 {
     public class AdminController : Controller
@@ -35,6 +35,18 @@ namespace WebAppFancyTemp.Controllers
             {
                 ViewBag.Message = "email incorrect";
                 return View();
+            }
+        }
+        public ActionResult Logout()
+        {
+            if (Check.Check_Login())
+            {
+                Session.Abandon();
+                return RedirectToAction("Login");
+            }
+            else
+            {
+               return RedirectToAction("Login");
             }
         }
     }
